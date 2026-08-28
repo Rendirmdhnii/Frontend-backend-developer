@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Todo List Frontend - Tugas 2 PWF
 
-## Getting Started
+**Nama:** Muhammad Rendy  
+**Keterangan:** Tugas 2 Pemrograman Web Frontend (PWF)  
+**Teknologi:** Next.js (App Router), React 19, TypeScript, Tailwind CSS
 
-First, run the development server:
+---
 
+## 📌 Deskripsi Proyek
+
+Aplikasi **Todo List Frontend** ini dibuat untuk memenuhi **Tugas 2 PWF**. Aplikasi ini dibangun menggunakan **Next.js App Router**, **React 19**, **TypeScript**, dan **Tailwind CSS**. Aplikasi menyajikan antarmuka modern untuk mengelola tugas harian, memanfaatkan perpaduan React Server Components (RSC) untuk fetching data dan Client Components untuk interaktivitas.
+
+---
+
+## ✨ Fitur Utama
+
+- 📋 **Daftar Tugas (Todo List):** Menampilkan semua daftar tugas beserta deskripsi dan status kelengkapannya.
+- ➕ **Tambah Tugas Baru:** Form interaktif untuk menambahkan tugas baru ke dalam daftar.
+- 🔍 **Detail Tugas:** Halaman rincian tugas berbasis dynamic route (`/task/[id]`).
+- ✅ **Toggle Status:** Mengubah status tugas antara *Selesai* dan *Belum Selesai*.
+- 🎨 **Desain Modern & Responsif:** Tampilan yang rapi, bersih, dan responsif menggunakan Tailwind CSS.
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router)
+- **Library UI:** [React 19](https://react.dev/)
+- **Bahasa:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animasi & Utilitas:** Framer Motion, clsx, tailwind-merge, class-variance-authority
+
+---
+
+## 🚀 Cara Menjalankan Proyek (Cara Pakai)
+
+### 1. Prasyarat
+Pastikan komputer Anda sudah terinstal:
+- **Node.js** (versi 18.x atau lebih baru)
+- **npm** (atau `pnpm` / `yarn` / `bun`)
+
+### 2. Clone Repositori
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Rendirmdhnii/todo-frontend.git
+cd todo-frontend
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Install Dependensi
+Jalankan perintah berikut untuk mengunduh semua dependensi paket:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Menjalankan Server Pengembang (Development)
+Jalankan server pengembangan:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Buka peramban (browser) dan akses alamat berikut:
+👉 **[http://localhost:3000](http://localhost:3000)**
 
-## Learn More
+### 5. Build untuk Produksi (Production Build)
+Untuk melakukan kompilasi build produksi:
+```bash
+npm run build
+```
+Untuk menjalankan server hasil build produksi:
+```bash
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Struktur Folder Proyek
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+todo-frontend/
+├── app/                  # Next.js App Router (Halaman & Route)
+│   ├── (auth)/           # Grouping Halaman Auth (Login/Register)
+│   ├── components/       # Komponen UI (TodoForm, TodoList, TodoItem, Header, dll)
+│   ├── task/             # Dynamic Route Detail Task ([id])
+│   ├── globals.css       # Custom & Tailwind Global Style
+│   ├── layout.tsx        # Layout Utama Aplikasi
+│   └── page.tsx          # Halaman Utama Todo List
+├── lib/                  # Data & Helper (todos.ts, utils.ts)
+├── types/                # Definisi Type & Interface TypeScript
+├── public/               # Asset Statis (Gambar, Icon)
+└── package.json          # Konfigurasi Proyek & Dependensi
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 👨‍💻 Identitas Pembuat
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Nama:** Muhammad Rendy
+- **Tugas:** Tugas 2 PWF (Pemrograman Web Frontend)
+- **Repository GitHub:** [https://github.com/Rendirmdhnii/todo-frontend](https://github.com/Rendirmdhnii/todo-frontend)
