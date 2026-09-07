@@ -11,10 +11,33 @@ export function mapApiTodoToTaskItem(apiTodo: ApiTodo): TaskItem {
     };
 }
 
+export interface GetTasksOptions {
+    limit?: number;
+    skip?: number;
+}
+
 export async function getTasks(
-    limit = 10,
-    skip = 0
+    options?: GetTasksOptions
+): Promise<{ tasks: TaskItem[]; total: number; skip: number; limit: number }>;
+export async function getTasks(
+    limit?: number,
+    skip?: number
+): Promise<{ tasks: TaskItem[]; total: number; skip: number; limit: number }>;
+export async function getTasks(
+    limitOrOptions: number | GetTasksOptions = 10,
+    skipParam = 0
 ): Promise<{ tasks: TaskItem[]; total: number; skip: number; limit: number }> {
+    let limit = 10;
+    let skip = 0;
+
+    if (typeof limitOrOptions === "object" && limitOrOptions !== null) {
+        limit = limitOrOptions.limit ?? 10;
+        skip = limitOrOptions.skip ?? 0;
+    } else if (typeof limitOrOptions === "number") {
+        limit = limitOrOptions;
+        skip = skipParam;
+    }
+
     const data = await todoService.getTodosApi(limit, skip);
     const tasks = data.todos.map(mapApiTodoToTaskItem);
 

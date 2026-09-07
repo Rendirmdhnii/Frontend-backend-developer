@@ -1,19 +1,24 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { TaskItem, TaskStats } from "@/types/api-todo";
+import { TaskItem } from "@/types/api-todo";
 import { getTaskStats } from "@/lib/tasks";
 
-export default function ApiTodoList() {
-    const [tasks, setTasks] = useState<TaskItem[]>([]);
-    const [total, setTotal] = useState(0);
+interface ApiTodoListProps {
+    initialTasks?: TaskItem[];
+}
+
+export default function ApiTodoList({ initialTasks = [] }: ApiTodoListProps) {
+    const [tasks, setTasks] = useState<TaskItem[]>(initialTasks);
+    const [total, setTotal] = useState(initialTasks.length);
     const [limit] = useState(5);
     const [skip, setSkip] = useState(0);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(initialTasks.length === 0);
     const [error, setError] = useState<string | null>(null);
     const [newTitle, setNewTitle] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [stats, setStats] = useState<TaskStats>({ total: 0, completed: 0, pending: 0 });
+    const stats = React.useMemo(() => getTaskStats(tasks), [tasks]);
+    const isFirstMount = React.useRef(true);
 
     const fetchTasks = useCallback(async () => {
         setLoading(true);
@@ -34,12 +39,14 @@ export default function ApiTodoList() {
     }, [limit, skip]);
 
     useEffect(() => {
+        if (isFirstMount.current) {
+            isFirstMount.current = false;
+            if (initialTasks.length > 0) {
+                return;
+            }
+        }
         fetchTasks();
-    }, [fetchTasks]);
-
-    useEffect(() => {
-        setStats(getTaskStats(tasks));
-    }, [tasks]);
+    }, [fetchTasks, initialTasks.length]);
 
     // Handler untuk Add Todo via API
     const handleAddTask = async (e: React.FormEvent) => {

@@ -2,9 +2,9 @@ const BASE_URL = "https://dummyjson.com";
 
 export class ApiError extends Error {
     status: number;
-    data: any;
+    data: unknown;
 
-    constructor(message: string, status: number, data?: any) {
+    constructor(message: string, status: number, data?: unknown) {
         super(message);
         this.name = "ApiError";
         this.status = status;
@@ -32,9 +32,9 @@ export async function apiClient<T>(
         const response = await fetch(url, config);
 
         if (!response.ok) {
-            let errorData: any;
+            let errorData: { message?: string } | null = null;
             try {
-                errorData = await response.json();
+                errorData = (await response.json()) as { message?: string };
             } catch {
                 errorData = null;
             }
